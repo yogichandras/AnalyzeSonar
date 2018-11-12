@@ -1,0 +1,15 @@
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\bin\Release\netcoreapp2.0\win-x64\hostpolicy.dll
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\bin\Release\netcoreapp2.0\win-x64\hostfxr.dll
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\bin\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.exe
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\bin\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.deps.json
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\bin\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.runtimeconfig.json
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\bin\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.runtimeconfig.dev.json
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\bin\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.dll
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\bin\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.pdb
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\obj\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.csprojAssemblyReference.cache
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\obj\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.csproj.CoreCompileInputs.cache
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\obj\Release\netcoreapp2.0\win-x64\UserSecretsAssemblyInfo.cs
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\obj\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.AssemblyInfoInputs.cache
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\obj\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.AssemblyInfo.cs
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\obj\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.dll
+D:\SAHAWARE\Dilo-Yogi-Branch\diloyogi\dilo\NewDiloApp\src\Dilo.Web.Portal\obj\Release\netcoreapp2.0\win-x64\Dilo.Web.Portal.pdb

@@ -1,0 +1,103 @@
+﻿@model RegisterViewModel
+
+<section class="mosh-service-area clearfix">
+	<div class="container" style="margin-bottom:10%;">
+		<div class="row" style="min-height: 700px;">
+			@Html.Partial("_navigation_profile")
+
+			<div class="col-sm-8" style="border: 1px solid grey; padding:10px;">
+				<div class="row" style="background-color:rgba(144, 14, 14, 0.06);">
+					<div class="col-sm-12 text-left">
+						<h5 style="Font-Family: Roboto;
+font-weight: bold;
+Font-Size: 16px;
+Line-Height: 19px;
+text-align: Left;">
+							Pengalaman
+						</h5>
+					</div>
+				</div>
+				<div class="row" style="margin-top:2%;">
+
+					@if (Model.pengalaman.Count == 0)
+					{
+					<div class="col-sm-12 text-center">
+						<h5>Anda belum memiliki data pegalaman Anda</h5>
+						<a asp-action="TambahPengalaman" asp-route-id="@Model.profileViewModel.UserId" class="btn btn-dark">Tambah data</a>
+					</div>
+							}
+							else
+							{
+							<div class="row" style="margin: 10px auto;">
+								<div class="col-sm-12">
+									<h5 style="font-weight:bold; text-decoration:underline;">Pengalaman Bekerja</h5>
+
+								</div>
+							</div>
+							foreach (var item in Model.pengalaman)
+							{
+
+
+							<div class="row" style="margin: 10px auto;">
+								<div class="col-sm-4">
+									<label for="nama_lengkap">Nama Perusahaan</label>
+
+								</div>
+								<div class="col-sm-8">
+									<div class="form-group">
+										<input type="text" class="form-control" style="border:1px solid black" name="namaPerusahaan" value="@item.namaPerusahaan" readonly />
+
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label for="password1">Jabatan atau Profesi</label>
+
+								</div>
+								<div class="col-sm-8">
+									<div class="form-group">
+
+										<input type="text" class="form-control" style="border:1px solid black" name="jabatan" value="@item.jabatan" readonly />
+
+									</div>
+								</div>
+
+								<div class="col-sm-4">
+									<label for="password1">Rentang</label>
+
+								</div>
+								<div class="col-sm-4" id="startDate">
+									<div class="form-group">
+										<label>Tanggal Mulai</label>
+										<input type="date" class="form-control" style="border:1px solid black;margin-bottom:3%;" name="startDate" readonly value="@item.startDate.ToString("yyyy-MM-dd")" />
+
+									</div>
+								</div>
+								<div class="col-sm-4" id="endDate">
+									<div class="form-group">
+										@if (item.isStillWorking != true)
+										{
+											<label>Tanggal Selesai</label>
+											<input type="text" class="form-control" style="border:1px solid black" name="endDate" value="@item.endDate" readonly />
+										}
+										else
+										{
+											<label>Hingga Saat Ini</label>
+										}
+									</div>
+								</div>
+
+
+								<div class="col-sm-12 text-right">
+									<div class="form-group">
+										<a asp-action="EditPengalaman" class="btn btn-dark" asp-controller="Profile"  asp-route-Id="@Model.profileViewModel.UserId" asp-route-IdPengalaman="@item.id">Edit</a>
+									</div>
+								</div>
+							</div>
+							}
+							}
+						</div>
+					
+			</div>
+		</div>
+	</div>
+</section>

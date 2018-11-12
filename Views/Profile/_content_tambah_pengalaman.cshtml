@@ -1,0 +1,105 @@
+﻿@using Microsoft.AspNetCore.Http
+@model RegisterViewModel
+
+<section class="mosh-service-area clearfix">
+	<div class="container" style="margin-bottom:10%;">
+		<div class="row" style="min-height: 700px;">
+			@Html.Partial("_navigation_profile")
+
+
+			<div class="col-sm-8" style="border: 1px solid grey; padding:10px;">
+				<form asp-action="TambahPengalaman" asp-controller="Profile" method="post">
+					<div class="row" style="background-color:rgba(144, 14, 14, 0.06);">
+						<div class="col-sm-12 text-left">
+							<h5 style="Font-Family: Roboto;
+font-weight: bold;
+Font-Size: 16px;
+Line-Height: 19px;
+text-align: Left;">
+								Pengalaman
+							</h5>
+						</div>
+					</div>
+					<div class="row" style="margin-top:2%;">
+						<div class="col-sm-12">
+
+
+							<div class="row" style="margin: 10px auto;">
+								<div class="col-sm-12">
+									<h5 style="font-weight:bold; text-decoration:underline;">Pengalaman Bekerja</h5>
+
+								</div>
+							</div>
+							<div class="row" style="margin: 10px auto;">
+								<input type="hidden" name="userId" value="@Model.profileViewModel.UserId" />
+								<div class="col-sm-4">
+									<label for="nama_lengkap">Nama Perusahaan</label>
+
+								</div>
+								<div class="col-sm-8">
+									<div class="form-group">
+										<input type="text" class="form-control" style="border:1px solid black" name="namaPerusahaan" required />
+
+									</div>
+								</div>
+								<div class="col-sm-4">
+									<label for="password1">Jabatan atau Profesi</label>
+
+								</div>
+								<div class="col-sm-8">
+									<div class="form-group">
+
+										<input type="text" class="form-control" style="border:1px solid black" name="jabatan" required />
+
+									</div>
+								</div>
+
+								<div class="col-sm-4">
+									<label for="password1">Rentang</label>
+
+								</div>
+								<div class="col-sm-4" id="startDate">
+									<div class="form-group">
+										<label>Tanggal Mulai</label>
+										<input type="text" class="form-control date-picker" style="border:1px solid black;margin-bottom:3%;" name="startDate"  required/>
+										<input type="checkbox" id="stillWorking" name="isStillWorking" value="true"/><label>Saya masih bekerja disini</label>
+									</div>
+								</div>
+								<div class="col-sm-4" id="endDate">
+									<div class="form-group">
+										<label>Tanggal Selesai</label>
+										<input type="text" class="form-control date-picker" style="border:1px solid black" name="endDate" />
+									</div>
+								</div>
+								
+
+
+							</div>
+
+
+
+						</div>
+						
+						<div class="col-sm-12 text-right">
+							<a asp-controller="Profile" asp-action="Pengalaman" asp-route-Id="@Model.profileViewModel.UserId" class="btn btn-outline-dark" style="margin-right:1%">Batal</a>
+							<button type="submit" class="btn btn-dark" style="width:12%">Simpan</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+	$('#startDate').click(function () {
+		if ($('#stillWorking').is(':checked')) {
+			$('#endDate').hide();
+		} else {
+			$('#endDate').show();
+
+		}
+	});
+</script>

@@ -1,0 +1,143 @@
+﻿<!--==========================
+  Tentang Kami Section
+============================-->
+<section id="features" style="margin-bottom:15%;">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcamb">
+                    <a asp-controller="Home" asp-action="Index" style="color:grey;">Beranda</a>
+                    <!-- <i style="color:black;" class="fa fa-instagram"></i> -->
+                    <label style="color:black;">>></label>
+                    <a asp-controller="Berita" asp-action="Index" style="color:black;">Berita</a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <p style="font-size: 12px;"><span id="tanggal"></span> oleh <b id="pembuat"></b></p>
+                <p style="font-weight:bold" id="judul"></p>
+            </div>
+            <div class="col-md-12">
+                <span id="gambarUtama">
+
+                </span>
+                <span id="isiKonten">
+                    <center><img src="~/img/loading.gif" style="width:200px;margin-left:auto;margin-right:auto;" id="loading" /></center>
+                </span>
+            </div>
+            
+
+        </div>
+    </div>
+
+</section><!-- #features -->
+
+<script src="~/js/jquery-2.2.4.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var url = window.location.pathname;
+        var id = url.substring(url.lastIndexOf('/') + 1);
+        $.getScript("/jquery-dateformat.min.js", function () {
+            $.ajax({
+                type: "GET",
+                url: "http://api.dilo.id/api/services/app/API/GetNews?newsId=" + id + "",
+                contentType: "application/json;",
+                dataType: "json",
+                beforeSend: function () {
+                    $('#loading').show();
+                },
+                complete: function () {
+                    $('#loading').hide();
+                },
+                success: function (data) {
+                    //alert(JSON.stringify(data));
+                    $("#DIV").html('');
+                    $.each(data.result["data"], function (i, item) {
+                        $("#tanggal").append(cari(1, $.format.date(item.createDate, "ddd")) + ", " + $.format.date(item.createDate, "dd") + " " + cari(2, $.format.date(item.createDate, "MMMM")) + $.format.date(item.createDate, " yyyy"));
+                        $("#pembuat").append(item.creatorName);
+                        $("#judul").append(item.name);
+                        $("#gambarUtama").append("<img src='" + item.picture+"' style='width:480px;float:left;margin-right:20px;' />");
+                        $("#isiKonten").append(item.description);
+                    }); //End of foreach Loop
+                }, //End of AJAX Success function
+
+                failure: function (data) {
+                    alert(data.responseText);
+                }, //End of AJAX failure function
+                error: function (data) {
+                    alert(data.responseText);
+                } //End of AJAX error function
+
+            });
+        });
+    });
+    function cari(x, y) {
+        var nilai = "gagal";
+        var query = x;
+        var data = y;
+        if (query == 1) {
+            if (data == "Sunday") {
+                nilai = "Minggu";
+            }
+            if (data, "ddd" == "Monday") {
+                nilai = "Senin";
+            }
+            if (data == "Tuesday") {
+                nilai = "Selasa";
+            }
+            if (data == "Wednesday") {
+                nilai = "Rabu";
+            }
+            if (data == "Thursday") {
+                nilai = "Kamis";
+            }
+            if (data == "Friday") {
+                nilai = "Jumat";
+            }
+            if (data == "Saturday") {
+                nilai = "Sabtu";
+            }
+
+        }
+        if (query == 2) {
+            if (data == "January") {
+                nilai = "Januari";
+            }
+            if (data == "February") {
+                nilai = "Februari";
+            }
+            if (data == "March") {
+                nilai = "Maret";
+            }
+            if (data == "April") {
+                nilai = "April";
+            }
+            if (data == "May") {
+                nilai = "Mei";
+            }
+            if (data == "June") {
+                nilai = "Juni";
+            }
+            if (data == "July") {
+                nilai = "Juli";
+            }
+            if (data == "August") {
+                nilai = "Agustus";
+            }
+            if (data == "September") {
+                nilai = "September";
+            }
+            if (data == "October") {
+                nilai = "Oktober";
+            }
+            if (data == "November") {
+                nilai = "November";
+            }
+            if (data == "December") {
+                nilai = "Desember";
+            }
+        }
+        return nilai;
+    }
+</script>

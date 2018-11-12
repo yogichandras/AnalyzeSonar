@@ -1,0 +1,236 @@
+﻿<!--==========================
+      Fasilitas Section
+    ============================-->
+<section id="features" style="padding-top:15px !important;">
+    <div class="container">
+
+        <div class="col-md-12" id="loading">
+            <center><img src="~/img/loading.gif" style="width:200px;margin-left:auto;margin-right:auto;" /></center>
+        </div>
+        <span id="data"></span>
+
+        <div class="col-8 text-right" style="    margin-top: 1%;
+    margin-bottom: 10%;float:right;" id="navigationButton">
+        </div>
+    </div>
+
+</section><!-- #features -->
+<script src="~/js/jquery-2.2.4.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="~/js/jquery.twbsPagination.js"></script>
+<script src="~/js/gantiBahasaTanggal.js"></script>
+<script>
+
+    $('#navigationButton').twbsPagination({
+        totalPages: 100,
+        visiblePages: 5,
+        onPageClick: function (event, page) {
+            $("#data").empty();
+            $.getScript("/jquery-dateformat.min.js", function () {
+
+                $.ajax({
+                    type: "GET",
+                    url: "http://api.dilo.id/api/services/app/API/GetOpportunitiesGroupByDate?page=" + page + "&item_perpage=" + $("#selectId").val() + "",
+                    contentType: "application/json;",
+                    dataType: "json",
+                    beforeSend: function () {
+                        $('#loading').show();
+                    },
+                    complete: function () {
+                        $('#loading').hide();
+                    },
+                    async: false,
+                    success: function (data) {
+                        //alert(JSON.stringify(data));
+                        $("#DIV").html('');
+                        var penghitung = 1;
+                        $.each(data.result["data"], function (i, item) {
+                            var rows = "<label style='margin-top:20px;'><h4><strong>" + item.keyword.substring(6, 8) +
+                                " " + cari(2, item.keyword.substring(4, 6)) + "</strong></br>" + item.keyword.substring(0,4) + "</h4></label ></br >" +
+                                "<div class='event' style='margin-top:15px;border-bottom:2px solid grey;'>" +
+                                "<div id='isi" + penghitung + "'>" +
+                                "</div>" +
+                                "</div><div class='event'>";
+                            $("#data").append(rows);
+                            var hitung = 1;
+                            $.each(item.data, function (j, opporItem) {
+                                var tgl = cari(1, $.format.date(opporItem.created_date, "ddd")) + "," + $.format.date(opporItem.created_date, " dd") + " " + cari(4, $.format.date(opporItem.created_date, "MMM")) + " " + $.format.date(opporItem.created_date, " yyyy");
+                                var rows =
+                                    "<div class='column' style='margin-right:5%;float:left;' >" +
+                                    "<a href='/Lowongan/Detail/" + opporItem.id + "'>" +
+                                    "<!-- Post-->" +
+                                    "<div class='post-module' style='min-width: 270px;'>" +
+                                    "<!-- Thumbnail-->" +
+                                    "<div class='thumbnail'>" +
+                                    "<div class='date'>" +
+                                    "<div class='day'></div>" +
+                                    "<div class='month'></div>" +
+                                    "</div><img src='" + opporItem.picture+"' />" +
+                                    "</div>" +
+                                    "<div class='post-content-title'>" +
+                                    "<!--<label>" + tgl +"</label>-->" +
+                                    "</div>" +
+                                    "<!-- Post Content-->" +
+                                    "<div class='post-content'>" +
+                                    "<label>" + tgl + "</label><br>" + 
+                                    "<label><strong>" + opporItem.title + "</strong></label><br>" +
+                                    "<label>" + opporItem.tenantName+"</label>" +
+                                    "<!-- <h1 class='title'>City Lights in New York</h1> -->" +
+                                    "<!-- <h2 class='sub_title'>The city that never sleeps.</h2> -->" +
+                                    "<div class='post-meta'>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</div>" +
+                                    "</a>" +
+                                    "</div >";
+                                $("#isi" + penghitung).append(rows);
+                                hitung = hitung + 1;
+                            });
+                            penghitung = penghitung + 1;
+                        });
+                    }, //End of AJAX Success function
+
+                    failure: function (data) {
+                        alert(data.responseText);
+                    }, //End of AJAX failure function
+                    error: function (data) {
+                        alert(data.responseText);
+                    } //End of AJAX error function
+
+                });
+            });
+        }
+    });
+    //$('#filter').click(function () {
+    //$(document).on('click', '#filter', function () {
+    $('body').delegate('#filter', 'click', function () {
+        //empty div
+        $('#navigationButton').empty();
+        //destroy twbsPagination Data
+        $('#navigationButton').removeData("twbs-pagination");
+        $('#navigationButton').unbind("page");
+        $.getScript("/js/jquery.twbsPagination.js", function () {
+            var kota = "";
+            var dateRange = "";
+            if ($('#kota').val() != 0) {
+                kota = $('#kota').val();
+            }
+            if ($('#dateRange').val() != 0) {
+                dateRange = $('#dateRange').val();
+            }
+            $('#navigationButton').twbsPagination({
+                totalPages: 100,
+                visiblePages: 5,
+                onPageClick: function (event, page) {
+                    $("#data").empty();
+                    $.getScript("/jquery-dateformat.min.js", function () {
+                        $.ajax({
+                            type: "GET",
+                            url: "http://api.dilo.id/api/services/app/API/GetOpportunitiesGroupByDate?page=" + page + "&item_perpage=" + $("#selectId").val() + "",
+                            contentType: "application/json;",
+                            dataType: "json",
+                            beforeSend: function () {
+                                $('#loading').show();
+                            },
+                            complete: function () {
+                                $('#loading').hide();
+                            },
+                            async: false,
+                            success: function (data) {
+                                //alert(JSON.stringify(data));
+                                $("#DIV").html('');
+                                var penghitung = 1;
+                                $.each(data.result["data"], function (i, item) {
+                                    if (item.data.length > 0) {
+                                        var rows = "<label style='margin-top:20px;'><h4><strong>" + $.format.date(item.keyword, "dd") +
+                                            " " + cari(2, $.format.date(item.keyword, "MMMM")) + "</strong></br>" + $.format.date(item.keyword, "yyyy") + "</h4></label ></br >" +
+                                            "<div class='event' style='margin-top:15px;border-bottom:2px solid grey;'>" +
+                                            "<div id='isi" + penghitung + "'>" +
+                                            "</div>" +
+                                            "</div>";
+                                        $("#data").append(rows);
+                                        var hitung = 1;
+                                        $.each(item.data, function (j, eventItem) {
+                                            var harga = "Free";
+                                            if (eventItem.price != 0) { var harga = "Rp" + eventItem.price; }
+                                            if (eventItem.start_date == eventItem.end_date) {
+                                                var tgl = cari(3, $.format.date(item.keyword, "E")) + "," + $.format.date(eventItem.start_date, " dd") + " " + cari(4, $.format.date(item.keyword, "MMM")) + " " + $.format.date(eventItem.start_date, " yyyy");
+                                            }
+                                            else { var tgl = cari(3, $.format.date(item.keyword, "E")) + "," + $.format.date(eventItem.start_date, " dd MMM  yyyy") + "-" + cari(3, $.format.date(eventItem.end_date, "E")) + "," + $.format.date(eventItem.end_date, " dd MMM  yyyy"); }
+                                            if (hitung % 2 == 1) {
+                                                var rows = "<div class='column'>" +
+                                                    "<a href='/Event/Detail/" + eventItem.id + "'>" +
+                                                    " <!-- Post-->" +
+                                                    "<div class='post-module'>" +
+                                                    " <!-- Thumbnail-->" +
+                                                    " <div class='thumbnail'>" +
+                                                    "  <div class='date'>" +
+                                                    "       <div class='day'></div>" +
+                                                    "        <div class='month'></div>" +
+                                                    "   </div>" +
+                                                    "  <img src='" + eventItem.picture + "' />" +
+                                                    "</div>" +
+                                                    "<!-- Post Content-->" +
+                                                    "<div class='post-content'>" +
+                                                    " <div class='category'></div>" +
+                                                    " <div class='label'>" + harga + "</div>" +
+                                                    " <label>" + tgl + " " + $.format.date(eventItem.time_start, "H:mm") + " WIB</label>" +
+                                                    " <label><strong>" + eventItem.title + "</strong></label>" +
+                                                    " <label>" + eventItem.tenantName + "</label>" +
+                                                    "<p class='description'>" + eventItem.description.substring(0, 75) + "...</p>" +
+                                                    "<div class='post-meta'>" +
+                                                    "</div>" +
+                                                    " </div>" +
+                                                    "</div>" +
+                                                    "</a>" +
+                                                    "</div>";
+                                            }
+                                            else {
+                                                var rows = "<div class='column'>" +
+                                                    "<a href='/Event/Detail/" + eventItem.id + "'>" +
+                                                    " <!-- Post-->" +
+                                                    "<div class='post-module'>" +
+                                                    " <!-- Thumbnail-->" +
+                                                    " <div class='thumbnail'>" +
+                                                    "  <div class='date'>" +
+                                                    "       <div class='day'></div>" +
+                                                    "        <div class='month'></div>" +
+                                                    "   </div>" +
+                                                    "  <img src='" + eventItem.picture + "' />" +
+                                                    "</div>" +
+                                                    "<!-- Post Content-->" +
+                                                    "<div class='post-content post-white-bg'>" +
+                                                    " <div class='category'></div>" +
+                                                    " <div class='label'>" + harga + "</div>" +
+                                                    " <label>" + tgl + " " + $.format.date(eventItem.time_start, "H:mm") + " WIB</label>" +
+                                                    " <label><strong>" + eventItem.title + "</strong></label>" +
+                                                    " <label>" + eventItem.tenantName + "</label>" +
+                                                    "<p class='description'>" + eventItem.description.substring(0, 75) + "...</p>" +
+                                                    "<div class='post-meta'>" +
+                                                    "</div>" +
+                                                    " </div>" +
+                                                    "</div>" +
+                                                    "</a>" +
+                                                    "</div>";
+                                            }
+
+                                            $("#isi" + penghitung).append(rows);
+                                            hitung = hitung + 1;
+                                        });
+                                        penghitung = penghitung + 1;
+                                    }
+                                });
+                            }, //End of AJAX Success function
+                            failure: function (data) {
+                                alert(data.responseText);
+                            }, //End of AJAX failure function
+                            error: function (data) {
+                                alert(data.responseText);
+                            } //End of AJAX error function
+                        });
+                    });
+                }
+            });
+        });
+    });
+</script>

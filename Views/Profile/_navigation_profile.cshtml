@@ -1,0 +1,47 @@
+﻿@using Microsoft.AspNetCore.Http
+@model RegisterViewModel
+<div class="col-sm-3" style="border-right: 1px solid grey; margin-right:2%;">
+	<div class="row" style="padding:20px 30px;margin-left:10%;">
+		@{if (Model.profileViewModel.Picture != null)
+			{
+				<img src="https://dilo-image.apps.playcourt.id/profile/@Model.profileViewModel.Picture" alt="Avatar" style="width:140px;height:140px; border-radius: 50%;    border: 1px solid darkred;">
+			}
+			else
+			{
+				<img src="~/images/avatar.jpg" alt="Avatar" style="width:140px;height:140px; border-radius: 50%;    border: 1px solid darkred;">
+			}
+		}
+	</div>
+
+	<div class="row" style="padding:0px 35px;margin-left:10%;">
+		<text style="font-size:20px;"><b>@Model.profileViewModel.firstname @Model.profileViewModel.lastname</b></text>
+	</div>
+	<div class="row" style="padding:0 30px;border-bottom:1px solid grey;margin:0px 40px 20px 40px;">
+
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<a asp-action="Index" asp-route-id="@Context.Session.GetString("user_id")" class="nav-tabs-dropdown btn btn-block btn-navigation @{if (ViewBag.navigation == "Profil") { <text>btn-dark</text> } else {<text>btn-white</text> } } " style="text-align:left;">Profil</a>
+			<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" class="nav-tabs-dropdown btn btn-block btn-navigation btn-white" style="text-align:left;">Pengalaman dan Keahlian</a>
+			<div class="collapse" id="collapseExample">
+				<a asp-action="Pengalaman" asp-route-id="@Context.Session.GetString("user_id")" class="nav-tabs-dropdown btn btn-block btn-navigation @{if (ViewBag.navigation == "Pengalaman") { <text>btn-dark</text> } else {<text>btn-white</text> } }" style="text-align:center;">Pengalaman</a>
+				<a asp-action="Keahlian" asp-route-id="@Context.Session.GetString("user_id")" class="nav-tabs-dropdown btn btn-block btn-navigation @{if (ViewBag.navigation == "Keahlian") { <text>btn-dark</text> } else {<text>btn-white</text> } }" style="text-align:center;">Keahlian</a>
+
+			</div>
+			<a asp-action="RiwayatKegiatan" asp-route-id="@Context.Session.GetString("user_id")" class="nav-tabs-dropdown btn btn-block btn-navigation @{if (ViewBag.navigation == "Riwayat") { <text>btn-dark</text> } else {<text>btn-white</text> } }" style="text-align:left;">Riwayat Kegiatan</a>
+			<a asp-action="ChangePassword" asp-route-id="@Context.Session.GetString("user_id")" class="nav-tabs-dropdown btn btn-block btn-navigation @{if (ViewBag.navigation == "Change Password") { <text>btn-dark</text> } else {<text>btn-white</text> } }" style="text-align:left;">Ubah Password</a>
+
+		</div>
+	</div>
+
+</div>
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+@{ if (ViewBag.navigation == "Pengalaman" || ViewBag.navigation == "Keahlian")
+	{
+		<script>
+			$('.collapse').collapse('toggle');
+		</script>
+	}
+
+}

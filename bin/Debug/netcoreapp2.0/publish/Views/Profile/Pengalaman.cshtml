@@ -1,0 +1,30 @@
+﻿@{
+	ViewData["Title"] = "Pengalaman";
+}
+<link href="~/css/style.css" rel="stylesheet">
+<link href="~/css/event.css" rel="stylesheet">
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">*@
+<style>
+	.col-sm-5 {
+		max-width: 40.666667%;
+	}
+	.btn-navigation {
+		border-radius: 1px 22px 22px 22px;
+	}
+
+	.btn-white {
+		color: black;
+		font-weight: bold;
+	}
+</style>
+<main id="main">
+
+	<!--==========================
+	  About Us Section
+	============================-->
+	@Html.Partial("_header_content")
+	@Html.Partial("_content_pengalaman")
+
+
+</main>
+<script src="~/lib/jquery/jquery.min.js"></script>

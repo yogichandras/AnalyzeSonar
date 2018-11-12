@@ -1,0 +1,79 @@
+﻿<!--==========================
+  Kunjungan Section
+============================-->
+<section id="tentang-kami">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-12" style="border-top:2px solid #BDBDBD;padding-top:20px;">
+				<center><h4 style="font-weight:bold;margin-top:5px;">Form Kujungan</h4></center>
+
+				<!-- <h3 class="section-title">Product Featuress</h3> -->
+				<center><div style="float:none !important;" class="pemisah"></div></center>
+				</br>
+			</div>
+
+			<div class="col-lg-8 wow fadeInUp">
+				<div>
+					<input type="hidden" value="@ViewBag.tenant_id" name="tenantid" />
+					<label for="nama">Nama</label>
+					<input type="text" id="nama" name="nama" class="form-control" required />
+
+					<label for="email">Email</label>
+					<input type="email" id="email" name="email" class="form-control" required />
+
+					<label for="noHandphone">No Handphone</label>
+					<input type="text" id="noHandphone" name="noHandphone" class="form-control" required />
+
+					<label for="nama">Tanggal Kunjungan</label>
+					<input type="date" id="tanggalKunjungan" name="tanggalKunjungan" class="form-control" required />
+
+					<label for="nama">Check In</label>
+					<input type="time" id="checkIn" name="checkIn" class="form-control" required />
+
+					<label for="nama">Check Out</label>
+					<input type="time" id="checkOut" name="checkOut" class="form-control" />
+
+					<label for="keperluan">Keperluan</label>
+					<select id="keperluan" class="form-control">
+						<option value="Co-Working">Co-Working</option>
+						<option value="Event">Event</option>
+						<option value="Kunjungan">Kunjungan</option>
+						<option value="Meeting">Meeting</option>
+					</select>
+
+					<div class="modal-footer">
+						<a class="button-register" style="color:black;" href="#"><center>Batal</center></a>
+						<a class="button-login" href="#"><center>Kirim</center></a>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-lg-4 wow fadeInUp">
+				<center><canvas id="clock3_" width="300px" height="300px"></canvas></center>
+
+				<script>
+				  clockd3_={
+						  "indicate": true,
+						  "indicate_color": "#222",
+						  "dial1_color": "#666600",
+						  "dial2_color": "#81812e",
+						  "dial3_color": "#9d9d5c",
+						  "time_add": 1,
+						  "time_24h": true,
+						  "date_add":3,
+						  "date_add_color": "#999",
+						 };
+
+				  var c = document.getElementById('clock3_');
+				  cns3_ = c.getContext('2d');
+
+
+				  clock_norm(300,cns3_,clockd3_);
+
+				</script>
+			</div>
+
+		</div>
+	</div>
+</section><!-- #tentang kami -->

@@ -1,0 +1,74 @@
+﻿<!--==========================
+  Tentang Kami Section
+============================-->
+<section id="features" style="margin-bottom:15%;">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcamb">
+                    <a asp-controller="Home" asp-action="Index" style="color:grey;">Home</a>
+                    <!-- <i style="color:black;" class="fa fa-instagram"></i> -->
+                    <label style="color:black;">>></label>
+                    <a asp-controller="Berita" asp-action="Index" style="color:black;">Opportunity</a>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <p style="font-size: 12px;"><span id="tanggal"></span> oleh <b id="pembuat"></b></p>
+                <p style="font-weight:bold" id="judul"></p>
+            </div>
+            <div class="col-md-12">
+                <span id="gambarUtama">
+
+                </span>
+                <span id="isiKonten">
+                </span>
+            </div>
+
+
+        </div>
+    </div>
+
+</section><!-- #features -->
+
+<script src="~/js/jquery-2.2.4.min.js"></script>
+
+<script src="~/js/gantiBahasaTanggal.js"></script>
+<script>
+    $(document).ready(function () {
+		$('#preloader').show();
+        var url = window.location.pathname;
+        var id = url.substring(url.lastIndexOf('/') + 1);
+        $.getScript("/jquery-dateformat.min.js", function () {
+            $.ajax({
+                type: "GET",
+                url: "http://web-api-dilo-web.apps.playcourt.id/api/services/app/API/GetOpportunities?opportunitiesId=" + id + "",
+                contentType: "application/json;",
+                dataType: "json",
+                beforeSend: function () {
+	$('#preloader').show();
+                },
+                complete: function () {
+					$('#preloader').hide();
+                },
+                success: function (data) {
+                    //alert(JSON.stringify(data));
+                    $("#DIV").html('');
+                    $.each(data.result["data"], function (i, item) {
+                        $("#tanggal").append(cari(1, $.format.date(item.created_date, "ddd")) + ", " + $.format.date(item.created_date, "dd") + " " + cari(2, $.format.date(item.created_date, "MMMM")) + $.format.date(item.created_date, " yyyy"));
+                        $("#pembuat").append(item.creatorName);
+                        $("#judul").append(item.title);
+                        $("#gambarUtama").append("<img src='" + item.picture + "' style='width:480px;float:left;margin-right:20px;' />");
+                        $("#isiKonten").append(item.description);
+                    }); //End of foreach Loop
+                }, //End of AJAX Success function
+
+                failure: function (data) {
+                }, //End of AJAX failure function
+                error: function (data) {
+                } //End of AJAX error function
+
+            });
+        });
+    });
+</script>

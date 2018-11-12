@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+}
+<link href="~/css/style.css" rel="stylesheet">
+<link href="~/css/event.css" rel="stylesheet">
+@*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">*@
+
+
+<style>
+	/* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+	.progress-pie-chart {
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		background-color: #E5E5E5;
+		position: relative;
+	}
+
+		.progress-pie-chart.gt-50 {
+			background-color: #81CE97;
+		}
+
+	.ppc-progress {
+		content: "";
+		position: absolute;
+		border-radius: 50%;
+		left: calc(50% - 100px);
+		top: calc(50% - 100px);
+		width: 200px;
+		height: 200px;
+		clip: rect(0, 200px, 200px, 100px);
+	}
+
+		.ppc-progress .ppc-progress-fill {
+			content: "";
+			position: absolute;
+			border-radius: 50%;
+			left: calc(50% - 100px);
+			top: calc(50% - 100px);
+			width: 200px;
+			height: 200px;
+			clip: rect(0, 100px, 200px, 0);
+			background: #81CE97;
+			transform: rotate(60deg);
+		}
+
+	.gt-50 .ppc-progress {
+		clip: rect(0, 100px, 200px, 0);
+	}
+
+		.gt-50 .ppc-progress .ppc-progress-fill {
+			clip: rect(0, 200px, 200px, 100px);
+			background: #E5E5E5;
+		}
+
+	.ppc-percents {
+		content: "";
+		position: absolute;
+		border-radius: 50%;
+		left: calc(50% - 173.9130434783px/2);
+		top: calc(50% - 173.9130434783px/2);
+		width: 173.9130434783px;
+		height: 173.9130434783px;
+		background: #fff;
+		text-align: center;
+		display: table;
+	}
+
+		.ppc-percents span {
+			display: block;
+			font-size: 2.6em;
+			font-weight: bold;
+			color: #81CE97;
+		}
+
+	.pcc-percents-wrapper {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.btn-navigation {
+		border-radius: 1px 22px 22px 22px;
+	}
+	.btn-white {
+		color: black;
+		font-weight: bold;
+	}
+
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+<main id="main">
+
+	<!--==========================
+	  About Us Section
+	============================-->
+	@Html.Partial("_header_content")
+	@Html.Partial("_content_profile")
+
+
+</main>
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		var $ppc = $('.progress-pie-chart'),
+			percent = parseInt($ppc.data('percent')),
+			deg = 360 * percent / 100;
+		if (percent > 50) {
+			$ppc.addClass('gt-50');
+		}
+		$('.ppc-progress-fill').css('transform', 'rotate(' + deg + 'deg)');
+		$('.ppc-percents span').html(percent + '%');
+	});
+</script>

@@ -1,0 +1,214 @@
+﻿@model RegisterViewModel
+
+<section class="mosh-service-area clearfix">
+	<div class="container" style="margin-bottom:10%;">
+		<div class="row" style="min-height: 700px;">
+		@Html.Partial("_navigation_profile")
+
+			<div class="col-sm-8" style="border: 1px solid grey; padding:10px;">
+				<div class="row" style="background-color:rgba(144, 14, 14, 0.06);">
+					<div class="col-sm-12 text-left" >
+						<h5 style="Font-Family: Roboto;
+font-weight: bold;
+Font-Size: 16px;
+Line-Height: 19px;
+text-align: Left;">Profile</h5>
+					</div>
+				</div>
+				<div class="row" style="margin-top:2%;">
+					<div class="col-sm-3" style="margin-right:6%">
+						<h5 style="font-weight:bold;font-size:14px;text-align:center; margin-left:25%;">Kelengkapan Data Profil Anda</h5>
+						<div class="progress-pie-chart" data-percent="43">
+							<div class="ppc-progress">
+								<div class="ppc-progress-fill"></div>
+							</div>
+							<div class="ppc-percents">
+								<div class="pcc-percents-wrapper">
+									<span>%</span>
+								</div>
+							</div>
+
+						</div>
+						<a asp-controller="Profile" asp-action="Edit" asp-route-id="@Model.profileViewModel.UserId" class="btn btn-dark" style="margin-top: 12%;
+    margin-left: 32%;">Lengkapi</a>
+					</div>
+					<div class="col-sm-7" style="background: #FFFFFF;
+border: 2px solid #BDBDBD;
+box-sizing: border-box;
+border-radius: 5px;min-height: 700px;">
+
+
+						<div class="row" style="margin: 10px auto;">
+							<div class="col-sm-12">
+								<h5 style="font-weight:bold; text-decoration:underline;">Data Diri</h5>
+								<input type="hidden" id="persentasi" value="@ViewBag.persentasi" />
+							</div>
+						</div>
+						<div class="row" style="margin: 10px auto;">
+							<div class="col-sm-6">
+								<label for="password1">Nama Lengkap &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+
+							<div class="col-sm-6">
+								<label for="password1">@Model.profileViewModel.firstname @Model.profileViewModel.lastname</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Alamat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">@Model.profileViewModel.Address</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">@Model.profileViewModel.Email</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Nomor Handphone &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">@Model.profileViewModel.PhoneNumber</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Jenis Kelamin &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1" id="result_gender"></label>
+								<input type="hidden" id="gender" value="@Model.profileViewModel.gender" />
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Tanggal Lahir &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">@Model.profileViewModel.Birthday.ToString("dd/MM/yyy")</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">No. Identitas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">@Model.profileViewModel.NoIdentitas</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Jenis Identitas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1" style="text-transform:uppercase">@Model.profileViewModel.jenisIdentitas</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Lokasi   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1" id="resdilolocation"></label>
+								<input type="hidden" id="dilolocation" value="@Model.profileViewModel.dilolocation" />
+							</div>
+							@*<div class="col-sm-6">
+			<label for="password1">Kota &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+		</div>
+		<div class="col-sm-6">
+			<label for="password1">@Model.profileViewModel</label>
+
+		</div>*@
+
+
+						</div>
+						<div class="row" style="margin: 10px auto;">
+							<div class="col-sm-12">
+								<h5 style="font-weight:bold; text-decoration:underline;">Media Sosial</h5>
+
+							</div>
+						</div>
+						<div class="row" style="margin: 10px auto;">
+							<div class="col-sm-6">
+								<label for="password1">Linkedin &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">@Model.profileViewModel.Linkedin</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Facebook &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">@Model.profileViewModel.Facebook</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Google+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">@Model.profileViewModel.Google</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Twitter &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label id="twitter_result"></label>
+								<input type="hidden" id="twitter" value="@Model.profileViewModel.Twitter" />
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">Instagram &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</label>
+
+							</div>
+							<div class="col-sm-6">
+								<label for="password1">@Model.profileViewModel.Instagram</label>
+
+							</div>
+
+						</div>
+
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script type="text/javascript">
+	var dilo = document.getElementById('dilolocation').value.replace(/([A-Z])/g, ' $1').trim();
+	var result = document.getElementById('resdilolocation').innerHTML = dilo;
+	var gender = document.getElementById('gender').value;
+	var result_gender;
+	if (gender === "male") {
+		result_gender = "Laki-laki";
+
+	} else if (gender === "female") {
+		result_gender = "Perempuan";
+	}
+	document.getElementById('result_gender').innerHTML = result_gender;
+
+	var twitter = document.getElementById('twitter').value;
+	String.prototype.splice = function (idx, rem, str) {
+		return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+	};
+
+	var result_twitter = twitter.splice(22, 0, "  ").splice(40, 0, "  ");
+
+	console.log(result_twitter);
+	document.getElementById('twitter_result').innerHTML = result_twitter; // "foo bar baz"
+
+</script>

@@ -1,0 +1,202 @@
+﻿<!--==========================
+	  Tentang Kami Section
+	============================-->
+<section id="tentang-kami">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-12" style="border-top:2px solid #BDBDBD;padding-top:10px;">
+				<center><h4 style="font-weight:bold;margin-top:5px;">Tentang Kami</h4></center>
+
+				<!-- <h3 class="section-title">Product Featuress</h3> -->
+				<center><div style="float:none !important;" class="pemisah"></div></center>
+				</br>
+			</div>
+			<div class="col-8 wow fadeInLeft" id="tentangkami">
+				<img src="~/img/loader.gif" style="margin-left:70%; margin-top:4%" id="loader_tentang_kami" />
+				@*<p class="description">
+			Digital Innovation Lounge (DILo) merupakan sebuah creative camp yang diinisiasi oleh Telkom Indonesi dan MIKTI yang dibentuk pada tahun 2014. DILo sendiri dibentuk untuk menciptakan, menumbuhkan dan meningkatkan kualitas dan kuantitas nibit-bibit digitalpleneur, sekaligus juga untuk mendukung pemberdayaan masyarakat dan komunitas di tanah air.
+			Saat ini, DILo sudah di 17 Kota di Indonesia yaitu, Solo, surabaya, Balikpapan, Malang, Medan, Bandung, Makassar, Bogor, Denpasar, Bekasi, Depok, Tangerang,
+			Pekanbaru, Baanda Aceh, Jogja, jakarta dan Padang. Meemiliki member sekitar 15.102 orang dari 17 Kota tersebut terhiting pada 2018. Untuk memcapai tujuannya,
+			DILo akan memluncurkan sebuah program yaitu DILo Academy yang didefenisikan sebagai Program Kerja pengembangan digital talent di seluruh Indonesia yang diinisiasi oleh Telkom dan diaksanakan bersama-sama dengan para Mitra strategisnya untuk menghasilkan digital startup yang unggul dan digital professional yang berkualitas tinggi dalam mendukung Digitalisasi Indonesia.
+		</p>*@
+			</div>
+			<div class="col-lg-4 wow fadeInUp">
+				<div style="width:100%;">
+					<div style="height:160px; border-top:1px solid rgba(30,32,37,0.8);border-left:1px solid rgba(30,32,37,0.8);border-bottom:1px solid rgba(30,32,37,0.8);border-right:1px solid #BDBDBD; border-radius: 5px 0 0 5px; width:50%;display:block;float:left;padding:30px;">
+						<center>
+							DILo memiliki</br>
+							<h3><strong id="member"></strong></br>MEMBER</h4>
+						</center>
+					</div>
+					<div style="height:160px; border-top:1px solid rgba(30,32,37,0.8);border-bottom:1px solid rgba(30,32,37,0.8);border-right:1px solid rgba(30,32,37,0.8);  border-radius: 0 5px 5px 0; width:50%;display:block;float:left;padding:30px;">
+						<div style="border-radius: 3px; border:1px solid #900E0E; height:100%;width:100%;padding:5px;">
+							<center>
+								Tersebar di</br>
+								<h3><strong id="kota"></strong></br>KOTA</h4>
+							</center>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</section><!-- #tentang kami -->
+<!--==========================
+	  Lokasi DILo Section
+	============================-->
+ <section id="lokasi-dilo">
+      <div class="container">
+		<div class="popup">
+			<span class="popuptext" id="myPopup">
+				
+			</span>
+		</div>
+        <div class="row">
+		  <div class="col-12">
+			<center><h4 style="font-weight:bold;margin-top:5px;">Lokasi DILo</h4></center>
+				
+				<!-- <h3 class="section-title">Product Featuress</h3> -->
+              <center><div style="float:none !important;" class="pemisah"></div></center>
+			  </br>
+		  </div>
+		  <div class="col-3">
+		  	<div class="list-group menu-map">
+
+		  		<a href="#jawa" class="list-group-item padding-bottom3" data-toggle="collapse" data-parent="#sidebar">
+		  			<span class="hidden-sm-down" style="color:black;font-size:16px;"><strong>Jawa</strong> <i class="fa fa-caret-up" style="float:right;"></i></span>
+		  		</a>
+
+		  		<div class="collapse show" id="jawa">
+		  			<a id="menu-bandung" onclick="klikPeta(0);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Bandung</a>
+		  			<a id="menu-bekasi" onclick="klikPeta(6);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Bekasi</a>
+		  			<a id="menu-bogor" onclick="klikPeta(2);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Bogor</a>
+		  			<a id="menu-depok" onclick="klikPeta(11);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Depok</a>
+		  			<a id="menu-jakarta" onclick="klikPeta(16);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Jakarta</a>
+		  			<a id="menu-yogyakarta" onclick="klikPeta(15);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Jogja</a>
+		  			<a id="menu-malang" onclick="klikPeta(10);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Malang</a>
+		  			<a id="menu-solo" onclick="klikPeta(13);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Solo</a>
+		  			<a id="menu-surabaya" onclick="klikPeta(12);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Surabaya</a>
+		  			<a id="menu-tangerang" onclick="klikPeta(3);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Tangerang</a>
+		  		</div>
+
+		  		<a href="#kalimantan" class="list-group-item padding-bottom3" data-toggle="collapse" data-parent="#sidebar">
+		  			<span class="hidden-sm-down" style="color:black;font-size:16px;"><strong>Kalimantan</strong> <i class="fa fa-caret-up" style="float:right;"></i></span>
+		  		</a>
+		  		<div class="collapse show" id="kalimantan">
+		  			<a id="menu-balikpapan" onclick="klikPeta(7);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Balikpapan</a>
+		  		</div>
+
+		  		<a href="#sulawesi" class="list-group-item padding-bottom3" data-toggle="collapse" data-parent="#sidebar">
+		  			<span class="hidden-sm-down" style="color:black;font-size:16px;"><strong>Sulawesi</strong> <i class="fa fa-caret-up" style="float:right;"></i></span>
+		  		</a>
+		  		<div class="collapse show" id="sulawesi">
+		  			<a id="menu-makassar" onclick="klikPeta(4);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Makassar</a>
+		  		</div>
+
+		  		<a href="#sumatera" class="list-group-item padding-bottom3" data-toggle="collapse" data-parent="#sidebar">
+		  			<span class="hidden-sm-down" style="color:black;font-size:16px;"><strong>Sumatera</strong> <i class="fa fa-caret-up" style="float:right;"></i></span>
+		  		</a>
+		  		<div class="collapse show" id="sumatera">
+		  			<a id="menu-banda-aceh" onclick="klikPeta(1);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Banda Aceh</a>
+		  			<a id="menu-medan" onclick="klikPeta(9);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Medan</a>
+		  			<a id="menu-padang" onclick="klikPeta(14);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Padang</a>
+		  			<a id="menu-pekanbaru" onclick="klikPeta(5);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Pekanbaru</a>
+		  		</div>
+
+		  		<a href="#denpasar" class="list-group-item padding-bottom3" data-toggle="collapse" data-parent="#sidebar">
+		  			<span class="hidden-sm-down" style="color:black;font-size:16px;"><strong>Bali</strong> <i class="fa fa-caret-up" style="float:right;"></i></span>
+		  		</a>
+		  		<div class="collapse show" id="denpasar">
+		  			<a id="menu-denpasar" onclick="klikPeta(8);" href="#lokasi-dilo" style="color:black;font-size:14px;" class="list-group-item padding-map-menu amap">Denpasar</a>
+		  		</div>
+		  	</div>
+
+		  </div>
+		  <div class="col-lg-9">
+				<!-- <div class="jsmaps-wrapper" id="default"></div> -->
+				<div id="default" style="width:100%; height:100%"></div>
+		  </div>
+
+		  
+        </div>
+	  </div>
+    </section><!-- #lokasi dilo -->
+	
+<!--==========================
+  Fasilitas Section
+============================-->
+<section id="features">
+	<div class="container">
+
+		<div class="row" id="contentfacility">
+			<div class="col-12" style="border-top:2px solid #BDBDBD;padding-top:10px;">
+				<center><h4 style="font-weight:bold;margin-top:5px;">Fasilitas</h4></center>
+
+				<!-- <h3 class="section-title">Product Featuress</h3> -->
+				<center><div style="float:none !important;" class="pemisah"></div></center>
+				<center><div style="float:none !important;"><img src="~/img/loader.gif" id="loader_facility" /></div></center>
+				
+			</div>
+
+
+			@*<div class="box wow fadeInRight fasilitas-box">
+					<div class="icon"><img style="width:100px;" src="img/facility/co-space.png" /></div>
+					<h4 class="title"><a href="">Co-working Space</a></h4>
+					<p class="description">Ruang kerja bersama yang dapat digunakan oleh digitalplenuer pemula, sebelum mereka mampu membiayai ruang kantor sendiri.</p>
+				</div>*@
+			@*<div class="box wow fadeInRight fasilitas-box" data-wow-delay="0.1s">
+					<div class="icon"><img style="width:100px;" src="img/facility/meeting-room.png" /></div>
+					<h4 class="title"><a href="">Meeeting Room</a></h4>
+					<p class="description">Ruang meeting yang dapat digunakan digitalplenuer pemula berdsarkan penjadwalan yang dilakukan.</p>
+				</div>
+				<div class="box wow fadeInRight fasilitas-box" data-wow-delay="0.2s">
+					<div class="icon"><img style="width:100px;" src="img/facility/class-room.png" /></div>
+					<h4 class="title"><a href="">Classroom</a></h4>
+					<p class="description">Ruang kelas yang dapat digunakan jika anda melakukan berbagai training ddan workshop berdasarkan penjadwalan yang dilakukan.</p>
+				</div>
+				<div class="box wow fadeInRight fasilitas-box" data-wow-delay="0.3s">
+					<div class="icon"><img style="width:100px;" src="img/facility/lounge.png" /></div>
+					<h4 class="title"><a href="">Lounge</a></h4>
+					<p class="description">Lounge yang disediakan oleh DILo digunakan sebagai tempat penyeleggaraan gathering atau kegiatan lainnya.</p>
+				</div>
+				<div class="box wow fadeInRight fasilitas-box" data-wow-delay="0.4s">
+					<div class="icon"><img style="width:100px;" src="img/facility/internet-access.png" /></div>
+					<h4 class="title"><a href="">Internet Access</a></h4>
+					<p class="description">Anda dapat menikmati akses internet berkecepatan tinggi untuk mendukung bisnis para digitalpleneur pemula.</p>
+				</div>*@
+		</div>
+	</div>
+
+</section><!-- #fasilitas -->
+<!--==========================
+  Client Section
+============================-->
+
+ <section id="features">
+      <div class="container" style="padding-bottom:100px;">
+
+        <div class="row">
+			<div class="col-12" style="border-top:2px solid #BDBDBD;padding-top:10px;">
+				<center><h4 style="font-weight:bold;margin-top:5px;">Partners</h4></center>
+
+				<!-- <h3 class="section-title">Product Featuress</h3> -->
+				<center><div style="float:none !important;" class="pemisah"></div></center>
+				<center><div style="float:none !important;"><img src="~/img/loader.gif" id="loader_client"/></div></center>
+				</br>
+			</div>
+		</div>
+		
+		<div class="row justify-content-md-center">
+			<div class="col col-lg-6" id="contentclient">
+				 
+			</div>
+		</div>
+		
+		
+		
+      </div>
+
+    </section><!-- #client -->

@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Event";
+}
+<link href="~/css/style.css" rel="stylesheet">
+<link href="~/css/event.css" rel="stylesheet">
+<div id="preloader" class="modal">
+	<center>
+		<img class="img-loader" src="~/loader.gif" />
+	</center>
+</div>
+<main id="main">
+
+	<!--==========================
+	  About Us Section
+	============================-->
+	@Html.Partial("Event/_tentang")
+	@Html.Partial("Event/_fasilitas")
+
+
+</main>

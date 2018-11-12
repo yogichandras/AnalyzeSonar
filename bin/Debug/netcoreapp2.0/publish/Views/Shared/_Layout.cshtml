@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DILo - @ViewData["Title"]</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="~/img/favicon.png" rel="icon">
+    <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" type="text/css" />
+
+    <!-- Libraries CSS Files -->
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/js/jsmaps/jsmaps.css" rel="stylesheet" type="text/css" />
+    <!-- Main Stylesheet File -->
+    <link href="~/css/style.css" rel="stylesheet" asp-append-version="true" type="text/css" />
+    <environment names="Development">
+        <!-- Bootstrap CSS File -->
+
+    </environment>
+    <style>
+        .nav-profile {
+            width: 50px;
+            position: absolute;
+            margin: -4px 0px 0px -50px;
+            border-radius: 50%;
+            border: 1px solid darkred;
+            padding: 7px;
+        }
+        /* -----------------------------------------
+           Timeline
+        ----------------------------------------- */
+        .timeline {
+            list-style: none;
+            padding-left: 0;
+            position: relative;
+        }
+
+            .timeline:after {
+                content: "";
+                height: auto;
+                width: 1px;
+                background: #e3e3e3;
+                position: absolute;
+                top: 5px;
+                left: 30px;
+                bottom: 25px;
+            }
+
+            .timeline.timeline-sm:after {
+                left: 12px;
+            }
+
+            .timeline li {
+                position: relative;
+                padding-left: 70px;
+                margin-bottom: 20px;
+            }
+
+                .timeline li:after {
+                    content: "";
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: #e3e3e3;
+                    position: absolute;
+                    left: 24px;
+                    top: 5px;
+                }
+
+                .timeline li .timeline-date {
+                    display: inline-block;
+                    width: 100%;
+                    color: #a6a6a6;
+                    font-style: italic;
+                    font-size: 13px;
+                }
+
+            .timeline.timeline-icons li {
+                padding-top: 7px;
+            }
+
+                .timeline.timeline-icons li:after {
+                    width: 32px;
+                    height: 32px;
+                    background: #fff;
+                    border: 1px solid #e3e3e3;
+                    left: 14px;
+                    top: 0;
+                    z-index: 11;
+                }
+
+                .timeline.timeline-icons li .timeline-icon {
+                    position: absolute;
+                    left: 23.5px;
+                    top: 7px;
+                    z-index: 12;
+                }
+
+                    .timeline.timeline-icons li .timeline-icon [class*=glyphicon] {
+                        top: -1px !important;
+                    }
+
+            .timeline.timeline-icons.timeline-sm li {
+                padding-left: 40px;
+                margin-bottom: 10px;
+            }
+
+                .timeline.timeline-icons.timeline-sm li:after {
+                    left: -5px;
+                }
+
+                .timeline.timeline-icons.timeline-sm li .timeline-icon {
+                    left: 4.5px;
+                }
+
+            .timeline.timeline-advanced li {
+                padding-top: 0;
+            }
+
+                .timeline.timeline-advanced li:after {
+                    background: #fff;
+                    border: 1px solid #29b6d8;
+                }
+
+                .timeline.timeline-advanced li:before {
+                    content: "";
+                    width: 52px;
+                    height: 52px;
+                    border: 10px solid #fff;
+                    position: absolute;
+                    left: 4px;
+                    top: -10px;
+                    border-radius: 50%;
+                    z-index: 12;
+                }
+
+                .timeline.timeline-advanced li .timeline-icon {
+                    color: #29b6d8;
+                }
+
+                .timeline.timeline-advanced li .timeline-date {
+                    width: 75px;
+                    position: absolute;
+                    right: 5px;
+                    top: 3px;
+                    text-align: right;
+                }
+
+                .timeline.timeline-advanced li .timeline-title {
+                    font-size: 17px;
+                    margin-bottom: 0;
+                    padding-top: 5px;
+                    font-weight: bold;
+                }
+
+                .timeline.timeline-advanced li .timeline-subtitle {
+                    display: inline-block;
+                    width: 100%;
+                    color: #a6a6a6;
+                }
+
+                .timeline.timeline-advanced li .timeline-content {
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    padding-right: 70px;
+                }
+
+                    .timeline.timeline-advanced li .timeline-content p {
+                        margin-bottom: 3px;
+                    }
+
+                    .timeline.timeline-advanced li .timeline-content .divider-dashed {
+                        padding-top: 0px;
+                        margin-bottom: 7px;
+                        width: 200px;
+                    }
+
+                .timeline.timeline-advanced li .timeline-user {
+                    display: inline-block;
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+
+                    .timeline.timeline-advanced li .timeline-user:before,
+                    .timeline.timeline-advanced li .timeline-user:after {
+                        content: " ";
+                        display: table;
+                    }
+
+                    .timeline.timeline-advanced li .timeline-user:after {
+                        clear: both;
+                    }
+
+                    .timeline.timeline-advanced li .timeline-user .timeline-avatar {
+                        border-radius: 50%;
+                        width: 32px;
+                        height: 32px;
+                        float: left;
+                        margin-right: 10px;
+                    }
+
+                    .timeline.timeline-advanced li .timeline-user .timeline-user-name {
+                        font-weight: bold;
+                        margin-bottom: 0;
+                    }
+
+                    .timeline.timeline-advanced li .timeline-user .timeline-user-subtitle {
+                        color: #a6a6a6;
+                        margin-top: -4px;
+                        margin-bottom: 0;
+                    }
+
+                .timeline.timeline-advanced li .timeline-link {
+                    margin-left: 5px;
+                    display: inline-block;
+                }
+
+        .timeline-load-more-btn {
+            margin-left: 70px;
+        }
+
+            .timeline-load-more-btn i {
+                margin-right: 5px;
+            }
+
+
+        /* -----------------------------------------
+           Dropdown
+        ----------------------------------------- */
+        .dropdown-menu {
+            padding: 0 0 0 0;
+        }
+
+        a.dropdown-menu-header {
+            background: #f7f9fe;
+            font-weight: bold;
+            border-bottom: 1px solid #e3e3e3;
+        }
+
+        .dropdown-menu > li a {
+            padding: 10px 20px;
+        }
+
+        /* -----------------------------------------
+           Badge
+        ----------------------------------------- */
+
+        .badge {
+            padding: 3px 5px 2px;
+            position: absolute;
+            top: 8px;
+            right: 5px;
+            display: inline-block;
+            min-width: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1;
+            vertical-align: baseline;
+            white-space: nowrap;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .badge-danger {
+            background-color: #db5565;
+        }
+
+        .modal {
+            overflow-y: auto;
+        }
+    </style>
+
+</head>
+<body>
+    @Html.Partial("_header")
+    @RenderBody()
+
+    @Html.Partial("_contact")
+    @Html.Partial("_footer")
+
+    @{ if (ViewBag.notif_reset != null)
+        {
+            @Html.Partial("_ResetPassword");
+        }
+        else
+        {
+            @Html.Partial("_LoginPartial");
+        }
+    }
+    <!-- JavaScript Libraries -->
+    <script src="~/lib/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="~/lib/jquery/jquery-migrate.min.js" type="text/javascript"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <script src="~/lib/easing/easing.min.js" type="text/javascript"></script>
+    <script src="~/lib/wow/wow.min.js" type="text/javascript"></script>
+    <script src="~/lib/superfish/hoverIntent.js" type="text/javascript"></script>
+    <script src="~/lib/superfish/superfish.min.js" type="text/javascript"></script>
+    <script src="~/lib/magnific-popup/magnific-popup.min.js" type="text/javascript"></script>
+
+    <!-- Contact Form JavaScript File -->
+    <script src="~/contactform/contactform.js" type="text/javascript"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="~/js/main.js" type="text/javascript"></script>
+    <!-- Template Main Javascript File -->
+    <script src="~/js/main.js" type="text/javascript"></script>
+    <script src="~/js/event.js" type="text/javascript"></script>
+    <!-- Modal POP up Register -->
+    <script type="text/javascript">
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+
+    <!-- End Map scripts -->
+    <!-- Modal POP up Register -->
+  
+    <!-- Map scripts - add the below to your page -->
+    <!-- jsmaps-panzoom.js is optional if you are using enablePanZoom -->
+    <script src="~/js/jsmaps/jsmaps-libs.js" type="text/javascript"></script>
+    <script src="~/js/jsmaps/jsmaps-panzoom.js"></script>
+
+    <script src="~/js/jsmaps/jsmaps.js"></script>
+    <script src="~/js/maps/indonesia.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            $('#indonesia-map').JSMaps({
+                map: 'indonesia'
+            });
+
+        });
+
+    </script> 
+    @*<environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>*@
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

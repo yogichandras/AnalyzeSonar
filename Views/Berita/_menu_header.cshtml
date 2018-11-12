@@ -1,0 +1,69 @@
+﻿<!--==========================
+  Tentang Kami Section
+============================-->
+<section id="features">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcamb">
+                    <a asp-controller="Home" asp-action="Index" style="color:grey;">Home</a>
+                    <!-- <i style="color:black;" class="fa fa-instagram"></i> -->
+                    <label style="color:black;">>></label>
+                    <a asp-controller="Berita" asp-action="Index" style="color:black;">News</a>
+                </div>
+            </div>
+            <div class="col-12">
+                <p class="description">
+                    Temukan berita terkini dan trend sekarang, barangkali kalian ada disana
+                </p>
+            </div>
+            <div class="col-3">
+                <div class="event-filter">
+                    <Label>Pilih Kota</Label>
+                    <select class="select-event" id="kota">
+                        <option value="0">Semua</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3" style="margin-top: 52px;">
+                <select class="select-lowongan" style="padding: 4px 55px 5px 10px;" id="selectNews">
+                    <option value="9">9</option>
+                    <option value="12">12</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                </select>
+
+            </div>
+            <div class="col-6">
+                <div class="event-filter-button">
+                    <Label>&nbsp; </Label>
+                    <a href="#" style="background:black; color:#fff; padding:6px 20px;border:1px solid black; border-radius:5px; width:400px;" id="filter">Tampilkan</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section><!-- #features -->
+<script src="~/js/jquery-2.2.4.min.js"></script>
+<script>
+    $.ajax({
+        type: "GET",
+        url: "http://web-api-dilo-web.apps.playcourt.id/api/services/app/API/GetTenant",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            $.each(data.result["data"], function (i, item) {
+                $('#kota').append('<option value=' + item.tenant_id + '>' + item.tenant_name + '</option>');
+
+            });
+        }, //End of AJAX Success function
+
+        failure: function (data) {
+        }, //End of AJAX failure function
+        error: function (data) {
+        } //End of AJAX error function
+
+    });
+</script>

@@ -1,0 +1,81 @@
+﻿<!--==========================
+  Tentang Kami Section
+============================-->
+<section id="features">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcamb">
+                    <a asp-controller="Home" asp-action="Index" style="color:grey;">Beranda</a>
+                    <!-- <i style="color:black;" class="fa fa-instagram"></i> -->
+                    <label style="color:black;">>></label>
+                    <a asp-controller="Event" asp-action="Index" style="color:black;">Event</a>
+                </div>
+            </div>
+            <div class="col-12">
+                <p class="description">
+                    Event DILo merupakan suatu rangkaian pelatihan yang akan membekali calon digitalpleneur untuk memenuhi, membangun dan mengembangkan bisnis dalam sektor kreatif digital. Diantaranya adalah, Workshop (Teknis, Desain, Bisnis) berjangka,
+                    Expert Session, DILo Goes to Campus, DILo Festival, Startup & Komunitas Gathering.
+                    </br></br>
+                    Yuk kembangin kemampuan Kamu dengan ikutan salah satu event DILo di bawah ini
+                </p>
+            </div>
+
+            <div class="col-3">
+                <div class="event-filter">
+                    <Label>Pilih Kota</Label>
+                    <select class="select-event" id="kota">
+                        <option value="0">Semua</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="event-filter">
+                    <Label>Pilih Periode</Label>
+                    <select class="select-event" id="dateRange">
+                        <option value="0">Semua</option>
+                        <option value="1">Hari Ini</option>
+                        <option value="2">Besok</option>
+                        <option value="3">Minggu Ini</option>
+                        <option value="4">Minggu Depan</option>
+                        <option value="5">Bulan Ini</option>
+                        <option value="6">Bulan Depan</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="event-filter-button">
+                    <Label>&nbsp; </Label>
+                    <a href="#" style="background:black; color:#fff; padding:6px 20px;border:1px solid black; border-radius:5px; width:400px;" id="filter">Tampilkan</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section><!-- #features -->
+<script src="~/js/jquery-2.2.4.min.js"></script>
+<script>
+    $.ajax({
+        type: "GET",
+        url: "http://api.dilo.id/api/services/app/API/GetTenant",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            $.each(data.result["data"], function (i, item) {
+                $('#kota').append('<option value=' + item.tenant_id + '>' + item.tenant_name + '</option>');
+
+            });
+        }, //End of AJAX Success function
+
+        failure: function (data) {
+            alert(data.responseText);
+        }, //End of AJAX failure function
+        error: function (data) {
+            alert(data.responseText);
+        } //End of AJAX error function
+
+    });
+</script>
+

@@ -1,0 +1,485 @@
+@model RegisterViewModel
+@using Microsoft.AspNetCore.Identity
+@using Dilo.Web.Portal.Models
+@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<div id="id01" class="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<div class="modal-content" style="width:30%;">
+			<form style="margin-top:5%;" asp-route-returnUrl="@ViewData["ReturnUrl"]" asp-controller="Account" asp-action="Register" method="post">
+
+				<div class="container-modal">
+					<h3 style="margin-bottom:5px !important;">Form Registrasi</h3>
+					<p style="margin-bottom:5px !important;">Silahkan lengkapi form registrasi di bawah ini.</p>
+					<div asp-validation-summary="All" class="text-danger"></div>
+					<div class="row">
+						<div class="col-6" style="text-align:left;">
+							<label class="label-control" for="firstname"><b>Nama Depan</b></label>
+							<input class="input-reg" type="text" placeholder="" asp-for="firstname" required>
+							<span asp-validation-for="firstname" class="text-danger"></span>
+						</div>
+						<div class="col-6" style="text-align:left;">
+							<label class="label-control" for="firstname"><b>Nama Belakang</b></label>
+							<input class="input-reg" type="text" placeholder="" asp-for="lastname" required>
+							<span asp-validation-for="lastname" class="text-danger"></span>
+						</div>
+					</div>
+					<label class="fleft" for="email"><b>Email</b></label>
+					<input class="input-reg" type="text" placeholder="" asp-for="Email" required>
+					<span asp-validation-for="Email" class="text-danger"></span>
+
+					<label class="fleft" for="psw"><b>Password</b></label>
+					<input class="input-reg" type="password" placeholder="" asp-for="Password" required>
+					<span asp-validation-for="Password" class="text-danger"></span>
+					<label class="fleft" for="psw"><b>Confirm Password</b></label>
+					<input class="input-reg" type="password" placeholder="" asp-for="ConfirmPassword" required>
+					<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+					<div class="form-group" style="margin-bottom:8%">
+						<label class="fleft" for="psw"><b>Dilo Location</b></label>
+						<select class="form-control" id="dilolocation" asp-for="dilolocation">
+							@foreach (var item in Html.GetEnumSelectList<Dilolocation>())
+							{
+								@*<input type="radio" asp-for="profileViewModel.gender" value="@item.Text">@item.Text*@
+								<option value="@item.Text">@item.Text</option>
+							}
+						</select>
+
+					</div>
+					<div class="clearfix">
+						<div style="float:left;">
+							<button style="float:right;" class="button-cancel" type="button" onclick="document.getElementById('id01').style.display='none'"><center>Batal</center></button>
+						</div>
+						<div style="float:right;">
+							<button type="submit" style="float:right;" class="button-login">Submit</button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<label><center>Atau</center></label>
+			<br />
+
+			<div class="clearfix">
+				<!-- <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button> -->
+				@*<button style="background:#446DB0;" type="submit" class="signup">
+						<i style="color:#fff; margin-top:3px;margin-right:20px;" class="fa fa-facebook fleft"></i>
+						<p style="left:200px;margin-bottom:0px !important;" class="fleft">Registrasi dengan Facebook</p>
+					</button>
+					<button style="border:1px solid black;background:#fff;;" type="submit" class="signup">
+						<i style="color:black; margin-top:3px;margin-right:20px;" class="fa fa-google fleft"></i>
+						<p style=" color:black; left:200px;margin-bottom:0px !important;" class="fleft">Registrasi dengan Gmail</p>
+					</button>*@
+				@{
+					var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+					if (loginProviders.Count == 0)
+					{
+						<div>
+							<p>
+								There are no external authentication services configured.
+							</p>
+						</div>
+					}
+					else
+					{
+						<form asp-controller="Account" asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+							@foreach (var provider in loginProviders)
+							{
+
+								@if (provider.Name == "Facebook")
+								{
+									<button style="background:#446DB0;" type="submit" class="signup" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+										<i style="color:#fff; margin-top:3px;margin-right:20px;" class="fa fa-facebook fleft"></i>
+										<p style="left:200px;margin-bottom:0px !important;" class="fleft">Registrasi dengan Facebook</p>
+									</button>
+								}
+								@if (provider.Name == "Google")
+								{
+									<button style="border:1px solid black;background:#fff;" type="submit" name="provider" class="signup" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+										<i style="color:black; margin-top:3px;margin-right:20px;" class="fa fa-google fleft"></i>
+										<p style=" color:black; left:200px;margin-bottom:0px !important;" class="fleft">Registrasi dengan Gmail</p>
+									</button>
+								}
+							}
+
+						</form>
+					}
+				}
+
+
+				<p class="fleft">Sudah registrasi? Silahkan <a href="#" onclick="document.getElementById('id01').style.display = 'none'; document.getElementById('id02').style.display = 'block'" style="color:black;font-weight:bold;text-decoration:underline">Login</a>.</p>
+			</div>
+
+		</div>
+	</center>
+</div>
+
+
+
+<div id="id02" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<form style="width:30%;margin-top:5%;" class="modal-content" asp-route-returnUrl="@ViewData["ReturnUrl"]" asp-controller="Account" asp-action="Login" method="post">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+				<h3 style="margin-bottom:5px !important;">Form Login</h3>
+				<label class="fleft" for="email"><b>Email</b></label><br />
+				@if (ViewBag.notif == "login_fail")
+				{
+					<label class="label-danger" for="email" style="margin-left: -53%;color: red;">Incorrect Email or Password</label>
+				}
+				<input class="input-reg" type="text" placeholder="" name="email" required>
+
+				<label class="fleft" for="psw"><b>Password</b></label>
+				<input class="input-reg" type="password" placeholder="" name="password" required>
+
+				<input class="input-reg" type="checkbox" value="true" name="RememberMe" style="float:left;margin-top:1%">
+				<label for="remember" style="margin-left:-35%">Selalu login</label>
+				<a style="float:right;color:black;font-weight:bold;text-decoration:underline" href="#" onclick="document.getElementById('id02').style.display = 'none'; document.getElementById('id03').style.display = 'block'">Lupa Password?</a>
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">Belum memiliki akun DILo? Silahkan <a href="#" onclick="document.getElementById('id02').style.display = 'none'; document.getElementById('id01').style.display = 'block'" style="color:black;font-weight:bold;text-decoration:underline">Registrasi</a>.</p>
+				</div>
+				<div class="clearfix">
+					<div style="float:left;">
+						<button style="float:right;" class="button-cancel" type="button" onclick="document.getElementById('id02').style.display='none'"><center>Batal</center></button>
+					</div>
+					<div style="float:right;">
+						<button style="float:right;" class="button-login" type="submit"><center>Login</center></button>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+<div id="id03" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<form style="width:35%;margin-top:5%;" class="modal-content" asp-action="ForgotPassword" asp-controller="Account" method="post">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+				<h3 style="margin-bottom:5px !important;">Lupa Password?</h3>
+
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Silahkan masukan email Anda pada kolom berikut<br />
+						untuk mengatur ulang password akun DILo Anda.
+
+					</p>
+				</div>
+				<label class="fleft" for="email"><b>Email</b></label>
+
+				<input class="input-reg" type="text" placeholder="" name="email" required>
+
+				<div class="clearfix" style="margin-top:8%;margin-bottom:10%;">
+					<div style="float:left;">
+						<button style="float:right;" class="button-cancel" type="button" onclick="document.getElementById('id03').style.display = 'none'; document.getElementById('id02').style.display = 'block'"><center>Batal</center></button>
+					</div>
+					<div style="float:right;">
+						<button style="float:right;" class="button-login" type="submit"><center>Submit</center></button>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+
+<div id="id04" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Verifikasi telah dikirim ke email Anda untuk<br />
+						mengatur ulang Password akun DILo Anda.
+
+					</p>
+				</div>
+
+				<div class="clearfix">
+
+					<a class="btn btn-dark" asp-action="Index"><center>Buka Email</center></a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+
+<div id="id05" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id05').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Pembuatan Akun Gagal.
+					</p>
+					<p class="text-center">@ViewBag.ErrorMessage</p>
+
+				</div>
+
+				<div class="clearfix">
+
+					<a class="btn btn-dark" asp-action="Index">Close</a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+<div id="id06" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id06').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Login Gagal! Silahkan konfirmasi e-mail anda terlebih dahulu.
+					</p>
+
+				</div>
+
+				<div class="clearfix">
+
+					<a class="btn btn-dark" asp-action="Index">Close</a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+
+<div id="id07" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id07').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Akun anda berhasil di konfirmasi! Silahkan Login.
+					</p>
+
+				</div>
+
+				<div class="clearfix">
+
+					<a class="btn btn-dark" href="#" onclick="document.getElementById('id07').style.display = 'none'; document.getElementById('id02').style.display='block'">Login</a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+
+<div id="id08" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id08').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Verifikasi telah dikirim ke email Anda untuk<br />
+						mengaktifkan akun DILo Anda.
+
+					</p>
+				</div>
+
+				<div class="clearfix">
+
+					<a class="btn btn-dark" asp-action="Index"><center>Buka Email</center></a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+<div id="id11" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id11').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Reset Password Berhasil! Silahkan Login Kembali.
+
+					</p>
+				</div>
+
+				<div class="clearfix">
+
+					@*<a class="btn btn-dark" asp-action="Index"><center>Buka Email</center></a>*@
+					<a class="btn btn-dark" href="#" onclick="document.getElementById('id11').style.display = 'none'; document.getElementById('id02').style.display='block'">Login</a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+<div id="id12" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id12').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Reset Password Gagal!
+
+					</p>
+				</div>
+
+				<div class="clearfix">
+
+					<a class="btn btn-dark" asp-action="Index"><center>Close</center></a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+<div id="id14" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('id14').style.display='none'" class="close" title="Close Modal">x</span>
+	<center>
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Register Gagal!
+
+					</p>
+				</div>
+
+				<div class="clearfix">
+
+					<a class="btn btn-dark" asp-action="Index"><center>Close</center></a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+@if (ViewBag.notif == "failed")
+{
+	<script>
+		document.getElementById('id05').style.display = 'block';
+	</script>
+}
+@if (ViewBag.notif == "success")
+{
+	<script>
+		document.getElementById('id08').style.display = 'block';
+	</script>
+}
+@if (ViewBag.notif == "login_fail")
+{
+	<script>
+		document.getElementById('id02').style.display = 'block';
+	</script>
+}
+@if (ViewBag.notif == "confirm_email")
+{
+	<script>
+		document.getElementById('id06').style.display = 'block';
+	</script>
+}
+@if (ViewBag.notif == "confirm_akun")
+{
+	<script>
+		document.getElementById('id07').style.display = 'block';
+	</script>
+}
+@if (ViewBag.notif == "confirm_password")
+{
+	<script>
+		document.getElementById('id04').style.display = 'block';
+	</script>
+}
+@if (ViewBag.notif == "success_forgot_password")
+{
+	<script>
+		document.getElementById('id11').style.display = 'block';
+	</script>
+}
+@if (ViewBag.notif == "fail_forgot_password")
+{
+	<script>
+		document.getElementById('id12').style.display = 'block';
+	</script>
+}
+
+@if (ViewBag.notif == "fail_register_oauth")
+{
+	<script>
+		document.getElementById('id14').style.display = 'block';
+	</script>
+}
+
+	@*<script src="~/lib/jquery/jquery.min.js"></script>
+<script>
+	$(document).ready(function () {
+		$.ajax({
+			type: "GET",
+			url: "http://api.dilo.id/api/services/app/API/GetTenant",
+			contentType: "application/json; charset=utf-8",
+			dataType: "json",
+			success: function (data) {
+				//alert(JSON.stringify(data));
+
+				$.each(data.result["data"], function (i, item) {
+					$('#dilolocation').append('<option value=' + item.tenant_id + '>' + item.tenant_name + '</option>');
+
+				});
+			}, //End of AJAX Success function
+
+			failure: function (data) {
+				alert("Error Dude");
+			}, //End of AJAX failure function
+			error: function (data) {
+				alert("Error Dude");
+			} //End of AJAX error function
+
+		});
+
+	});
+</script>*@

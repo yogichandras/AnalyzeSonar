@@ -1,0 +1,90 @@
+﻿<section id="features" style="padding-top:15px !important;">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12" style="border-bottom:2px solid grey;padding-top:10px;"></div>
+
+
+        </div>
+        <div class="row" style="margin-bottom:20px;">
+            
+            <span id="judul">
+
+            </span>
+            <div class="col-md-12">
+
+                <div class="row">
+                    <center>
+                        <img src="~/img/loading.gif" style="width:200px;margin-left:auto;margin-right:auto;" id="loading" />
+                    </center>
+                    <div class="col-md-6">
+                        <span id="gambarUtama">
+
+                        </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span id="isiKonten">
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section><!-- #features -->
+
+<script>
+    $(document).ready(function () {
+        $(".event-filter").hide();
+        $(".event-filter-button").hide();
+        var url = window.location.pathname;
+        var id = url.substring(url.lastIndexOf('/') + 1);
+        $.getScript("/jquery-dateformat.min.js", function () {
+            $.ajax({
+                type: "GET",
+                url: "http://api.dilo.id/api/services/app/API/GetEvent?eventId=" + id + "",
+                contentType: "application/json;",
+                dataType: "json",
+                beforeSend: function () {
+                    $('#loading').show();
+                },
+                complete: function () {
+                    $('#loading').hide();
+                },
+                success: function (data) {
+                    //alert(JSON.stringify(data));
+                    $("#DIV").html('');
+                    $.each(data.result["data"], function (i, item) {
+                        var harga = "GRATIS";
+
+                        if (item.price != 0) {
+                            var harga = "Rp " + item.price;
+                        }
+
+                        $("#judul").append("<div class='col-12'><label style='margin-top:20px;'><h4>" + $.format.date(item.start_date, "dd MMMM yyyy") + "</br><strong>" + item.title + "</strong></h4></label></br ></div>");
+                        $("#gambarUtama").append("<img src='" + item.picture + "' style='width:480px;float:left;' />");
+                        $("#isiKonten").append(item.description +
+                            "<div><p><strong>Tanggal<strong></br>" + $.format.date(item.start_date, "ddd, dd MMMM yyyy") + "</br>" + $.format.date(item.time_start, "hh:mm a") + " - " + $.format.date(item.time_end, "hh:mm a") + "</p></div>" +
+                            "<div><p><strong>Lokasi<strong></br>" + item.tenantName + "</br>" + item.location + "</br><a href=''>Lihat Peta</a></p></div>" +
+                            "<div><p><strong>Harga<strong></br>" + harga + "</p></div>" +
+
+                            "<div>" +
+                            "<a class='button-daftar-event' href='#'>Daftar</a>" +
+                            "</div>");
+
+
+                    }); //End of foreach Loop
+                }, //End of AJAX Success function
+
+                failure: function (data) {
+                    alert(data.responseText);
+                }, //End of AJAX failure function
+                error: function (data) {
+                    alert(data.responseText);
+                } //End of AJAX error function
+
+            });
+        });
+    });
+</script>

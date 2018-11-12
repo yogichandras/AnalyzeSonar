@@ -1,0 +1,23 @@
+﻿@{
+	ViewData["Title"] = "Berita";
+}
+<link href="~/css/style.css" rel="stylesheet">
+<link href="~/css/event.css" rel="stylesheet">
+<style>
+    .gambar {
+        background-image:url("~/img/loading.gif");
+        margin-left:auto;
+        margin-right:auto;
+        z-index:100;
+    }
+</style>
+<main id="main">
+
+	<!--==========================
+	  About Us Section
+	============================-->
+	@Html.Partial("_menu_header")
+	@Html.Partial("_menu_content")
+
+
+</main>

@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Dilo.Web.Portal.Models
+@using System.Collections.Generic
+@using System.Linq
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Authentication
+@using Microsoft.AspNetCore.Http
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<!--==========================
+	  Header
+	============================-->
+<header id="header" class="header-fixed">
+	<div class="container">
+
+        <div id="logo" class="pull-left">
+            <!-- <h1><a href="#intro" class="scrollto">DILo</a></h1> -->
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <a asp-controller="Home" asp-action="Index"><img style="height:40px;" src="~/img/DILoLogo.png" alt="DILo" title="DILo"></a>
+            @*<a asp-controller="Home" asp-action="Index"><img style="height:40px;" src="~/img/logo-2.png" alt="DILo" title="DILo"></a>*@
+        </div>
+
+		<nav id="nav-menu-container">
+			<ul class="nav-menu">
+			@{if (ViewBag.dilolokal == null)
+					{
+						<li @if (ViewBag.navigation == "Home") { <text> class='menu-active' </text> ; }><a asp-controller="Home" asp-action="Index">Home</a></li>
+						<li @if (ViewBag.navigation == "Event") { <text> class='menu-active' </text> ; }><a asp-controller="Event" asp-action="Index">Program & Event</a></li>
+						<li @if (ViewBag.navigation == "Lowongan") { <text> class='menu-active' </text> ; }><a asp-controller="Lowongan" asp-action="Index">Opportunity</a></li>
+						<li @if (ViewBag.navigation == "Berita") { <text> class='menu-active' </text> ; } style="margin-right:150px;"><a asp-controller="Berita" asp-action="Index">News</a></li>
+					}
+					else
+					{
+						<li @if (ViewBag.navigation == "Home") { <text> class='menu-active' </text> ; }><a href="/@ViewBag.dilolokal">Home</a></li>
+						<li @if (ViewBag.navigation == "Event") { <text> class='menu-active' </text> ; }><a href="/@ViewBag.dilolokal/event">Program & Event</a></li>
+						<li @if (ViewBag.navigation == "Lowongan") { <text> class='menu-active' </text> ; }><a href="/@ViewBag.dilolokal/lowongan">Opportunity</a></li>
+						<li @if (ViewBag.navigation == "Berita") { <text> class='menu-active' </text> ; } style="margin-right:150px;"><a href="/@ViewBag.dilolokal/berita">News</a></li>
+
+					}
+				}
+						
+				@if (SignInManager.IsSignedIn(User))
+				{
+				<li class="dropdown dropdown-user nav-item">
+					@if (Context.Session.GetString("picture") == null)
+					{
+						<img src="~/images/avatar.jpg" class="nav-profile" />
+					}
+					else
+					{
+						<img src="https://dilo-image.apps.playcourt.id/profile/@Context.Session.GetString("picture")" class="nav-profile" />
+					}
+					<a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+
+						<span class="mr-1">
+							Hello<br />
+								 <span class="user-name text-bold-700" style="font-weight:bold">@Context.Session.GetString("first_name") @Context.Session.GetString("last_name")</span>
+						</span>
+						@*<span class="avatar avatar-online">
+				<img src="../../../app-assets/images/portrait/small/avatar-s-19.png" alt="avatar"><i></i>
+			</span>*@
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a class="dropdown-item" asp-controller="Profile" asp-action="Index" asp-route-id="@Context.Session.GetString("user_id")" style="padding-top:10px;padding-bottom:5px;"><i class="ft-user"></i> Profile</a>
+
+						<div class="dropdown-divider"></div><a class="dropdown-item" asp-action="Logout" asp-controller="Account"><i class="ft-power"></i> Sign Out</a>
+					</div>
+				</li>
+				
+				}
+
+				else
+				{
+					<li>
+						<a onclick="document.getElementById('id01').style.display='block'" class="button-register" href="#"><center>Sign Up</center></a>
+					</li>
+					<li>
+						<a onclick="document.getElementById('id02').style.display='block'" class="button-login" href="#"><center>Sign In</center></a>
+					</li>
+
+				}
+			</ul>
+		</nav><!-- #nav-menu-container -->
+	</div>
+</header><!-- #header -->

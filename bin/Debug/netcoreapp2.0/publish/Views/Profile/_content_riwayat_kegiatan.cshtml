@@ -1,0 +1,28 @@
+﻿<section class="mosh-service-area clearfix">
+	<div class="container" style="margin-bottom:10%;">
+		<div class="row" style="min-height: 700px;">
+			@Html.Partial("_navigation_profile")
+
+			<div class="col-sm-8" style="border: 1px solid grey; padding:10px;">
+				<div class="row" style="background-color:rgba(144, 14, 14, 0.06);">
+					<div class="col-sm-12 text-left">
+						<h5 style="Font-Family: Roboto;
+font-weight: bold;
+Font-Size: 16px;
+Line-Height: 19px;
+text-align: Left;">
+							Event
+						</h5>
+					</div>
+				</div>
+				<div class="row" style="margin-top:2%;">
+					<div class="col-sm-12 text-center" id="EventContent">
+						<h5>Anda belum mengikuti event DILo. Silahkan lihat event yang tersedia dengan mengklik tombol berikut</h5>
+						<a asp-action="Index" asp-controller="Event" class="btn btn-dark">Lihat Event</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

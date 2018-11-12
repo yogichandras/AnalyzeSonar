@@ -1,0 +1,115 @@
+﻿@using Microsoft.AspNetCore.Http
+<div id="EventFail" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('EventFail').style.display='none'" class="close" title="Close Modal">x</span>
+	<center id="itscenter">
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Silahkan Masuk Untuk Mendaftar Event!
+
+					</p>
+				</div>
+
+				<div class="clearfix">
+					<a class="btn btn-dark" href="#" onclick="document.getElementById('EventFail').style.display = 'none'; document.getElementById('id02').style.display='block'">Sign In</a>
+					<a class="btn btn-dark" href="#" onclick="document.getElementById('EventFail').style.display = 'none';"><center>Cancel</center></a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+<div id="EventSuccess" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('EventSuccess').style.display='none'" class="close" title="Close Modal">x</span>
+	<center id="itscenter">
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Selamat, Anda sudah terdaftar di Event ini!
+
+					</p>
+				</div>
+
+				<div class="clearfix">
+					<a class="btn btn-dark" href="#" onclick="document.getElementById('EventSuccess').style.display = 'none';"><center>Close</center></a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+<div id="EventFailed" class="modal">
+	<span style="color:#fff;margin-top:10px;margin-right:20px;" onclick="document.getElementById('EventFailed').style.display='none'" class="close" title="Close Modal">x</span>
+	<center id="itscenter">
+		<form style="width:30%;margin-top:5%;" class="modal-content" action="/action_page.php">
+			<div class="container-modal" style="margin: 20px 10px 10px 10px;">
+
+				<div class="clearfix" style="margin-top:5%;">
+					<p class="text-center">
+						Pendaftaran Gagal, Silahkan Coba Lagi!
+
+					</p>
+				</div>
+
+				<div class="clearfix">
+					<a class="btn btn-dark" href="#" onclick="document.getElementById('EventFailed').style.display = 'none';"><center>Close</center></a>
+
+
+				</div>
+
+			</div>
+		</form>
+	</center>
+</div>
+
+<div id="map-modal" class="modal" style="margin:auto;max-width:700px !important;max-height:500px !important;">
+	<center id="center-map">
+		<div style="width:700px; height:500px;border:1px solid grey;" id="mapin-modal"></div>
+	</center>
+</div>
+<section id="features" style="padding-top:15px !important;">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-12" style="border-bottom:2px solid grey;padding-top:10px;"></div>
+
+
+		</div>
+		<div class="row" style="margin-bottom:20px;">
+			<input type="hidden" id="membercode" value="@Context.Session.GetString("user_code")" />
+			<input type="hidden" id="firstname" value="@Context.Session.GetString("first_name")" />
+			<input type="hidden" id="lastname" value="@Context.Session.GetString("last_name")" />
+			<input type="hidden" id="email" value="@Context.Session.GetString("email")" />
+			<span id="judul">
+
+			</span>
+			<div class="col-md-12">
+
+				<div class="row">
+					<div class="col-md-6">
+						<span id="gambarUtama">
+
+						</span>
+					</div>
+					<div class="col-md-6">
+						<span id="isiKonten">
+						</span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</section><!-- #features -->
+<script src="~/js/eventDetail.js"></script>
